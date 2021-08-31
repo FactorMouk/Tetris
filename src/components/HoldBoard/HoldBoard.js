@@ -1,21 +1,19 @@
-import "./GameCanvas.scss";
+import "./HoldBoard.scss";
 import React, { useState, useEffect } from "react";
 
-export function GameCanvas() {
-  const COLS = 10;
-  const ROWS = 20;
+export function HoldBoard() {
+  const COLS = 4;
+  const ROWS = 4;
   const BLOCKSIZE = 40;
-  const [boardCtx, setBoardCtx] = useState(null);
-  const [board, setBoard] = useState(
-    Array.from({ length: ROWS }, () => Array(COLS).fill(0))
-  );
+
+  const [holdBoardCtx, setHoldBoardCtx] = useState(null);
 
   useEffect(() => {
-    drawBoard();
+    drawHoldBoard();
   }, []);
 
-  function drawBoard() {
-    let ctxAux = document.getElementById("tetris-canvas").getContext("2d");
+  function drawHoldBoard() {
+    let ctxAux = document.getElementById("hold-board").getContext("2d");
     ctxAux.canvas.width = BLOCKSIZE * COLS;
     ctxAux.canvas.height = BLOCKSIZE * ROWS;
     for (let i = 0; i < ROWS; i++) {
@@ -26,9 +24,13 @@ export function GameCanvas() {
         ctxAux.strokeRect(j * BLOCKSIZE, i * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
       }
     }
-    setBoardCtx(ctxAux);
-    console.log(boardCtx, board, setBoard);
+    setHoldBoardCtx(ctxAux);
+    console.log(holdBoardCtx);
   }
-
-  return <canvas id="tetris-canvas"></canvas>;
+  return (
+    <section className="HoldBoard">
+      <h3>HOLD</h3>
+      <canvas id="hold-board"></canvas>
+    </section>
+  );
 }

@@ -1,21 +1,19 @@
-import "./GameCanvas.scss";
+import "./NextBoard.scss";
 import React, { useState, useEffect } from "react";
 
-export function GameCanvas() {
-  const COLS = 10;
-  const ROWS = 20;
+export function NextBoard() {
+  const COLS = 4;
+  const ROWS = 12;
   const BLOCKSIZE = 40;
-  const [boardCtx, setBoardCtx] = useState(null);
-  const [board, setBoard] = useState(
-    Array.from({ length: ROWS }, () => Array(COLS).fill(0))
-  );
+
+  const [nextBoardCtx, setNextBoardCtx] = useState(null);
 
   useEffect(() => {
-    drawBoard();
+    drawNextBoard();
   }, []);
 
-  function drawBoard() {
-    let ctxAux = document.getElementById("tetris-canvas").getContext("2d");
+  function drawNextBoard() {
+    let ctxAux = document.getElementById("next-board").getContext("2d");
     ctxAux.canvas.width = BLOCKSIZE * COLS;
     ctxAux.canvas.height = BLOCKSIZE * ROWS;
     for (let i = 0; i < ROWS; i++) {
@@ -26,9 +24,14 @@ export function GameCanvas() {
         ctxAux.strokeRect(j * BLOCKSIZE, i * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
       }
     }
-    setBoardCtx(ctxAux);
-    console.log(boardCtx, board, setBoard);
+    setNextBoardCtx(ctxAux);
+    console.log(nextBoardCtx);
   }
 
-  return <canvas id="tetris-canvas"></canvas>;
+  return (
+    <section className="NextBoard">
+      <h3>NEXT</h3>
+      <canvas id="next-board"></canvas>
+    </section>
+  );
 }

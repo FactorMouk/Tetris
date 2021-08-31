@@ -4,7 +4,7 @@ import { GameScore } from "./../GameScore/GameScore";
 
 export function GameScreen() {
   return (
-    <section>
+    <section className="GameScreen">
       <GameCanvas></GameCanvas>
       <GameScore></GameScore>
     </section>
